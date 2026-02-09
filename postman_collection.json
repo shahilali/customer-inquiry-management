@@ -1,0 +1,158 @@
+{
+  "info": {
+    "name": "Customer Inquiry Management API",
+    "description": "API endpoints for managing customer inquiries for Stock Exchange",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000/api",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        }
+      }
+    },
+    {
+      "name": "Get All Inquiries",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/inquiries?per_page=15&page=1",
+          "host": ["{{base_url}}"],
+          "path": ["inquiries"],
+          "query": [
+            {
+              "key": "per_page",
+              "value": "15"
+            },
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "category",
+              "value": "Trading",
+              "disabled": true
+            },
+            {
+              "key": "status",
+              "value": "pending",
+              "disabled": true
+            },
+            {
+              "key": "priority",
+              "value": "high",
+              "disabled": true
+            },
+            {
+              "key": "search",
+              "value": "",
+              "disabled": true
+            },
+            {
+              "key": "sort_by",
+              "value": "created_at",
+              "disabled": true
+            },
+            {
+              "key": "sort_order",
+              "value": "desc",
+              "disabled": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create Inquiry",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"phone\": \"+1234567890\",\n  \"category\": \"Trading\",\n  \"subject\": \"Question about stock trading\",\n  \"message\": \"I need help understanding how to place a market order for stocks.\",\n  \"priority\": \"medium\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/inquiries",
+          "host": ["{{base_url}}"],
+          "path": ["inquiries"]
+        }
+      }
+    },
+    {
+      "name": "Get Single Inquiry",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/inquiries/1",
+          "host": ["{{base_url}}"],
+          "path": ["inquiries", "1"]
+        }
+      }
+    },
+    {
+      "name": "Update Inquiry",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"in_progress\",\n  \"priority\": \"high\",\n  \"resolution_notes\": \"Working on this issue...\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/inquiries/1",
+          "host": ["{{base_url}}"],
+          "path": ["inquiries", "1"]
+        }
+      }
+    },
+    {
+      "name": "Delete Inquiry",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/inquiries/1",
+          "host": ["{{base_url}}"],
+          "path": ["inquiries", "1"]
+        }
+      }
+    },
+    {
+      "name": "Get Statistics",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/inquiries/statistics",
+          "host": ["{{base_url}}"],
+          "path": ["inquiries", "statistics"]
+        }
+      }
+    }
+  ]
+}
